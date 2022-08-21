@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <title>Binding</title>
@@ -7,9 +7,37 @@
     <script src="/js/vue.min.js"></script>
 </head>
 <body class="exercicio">
+    <div id="app">
+        <p>{{ link }}</p>
+        <!-- Interpola na sua page -->
+        <p><a href="{{ link }}">Calm music</a></p> 
 
+        <!-- Formas diferentes de fazer a mesma coisa -->
+        <p><a v-bind:href="link">Calm music</a></p>
+        <p><a :href="link">Calm music</a></p>
+
+        <p>
+            <!-- Atualiza em duas direcoes (Observer) -->
+            <input type="text" v-model="nome"><br>
+            <!-- Nao -->
+            <!-- <input type="text" :value="nome"><br> -->
+            <span>{{ nome }}</span>
+        </p>
+    </div>
     <script>
-        // ...
+        new Vue({
+            el: '#app',
+            data: {
+                nome: "Maria",
+                link: 'https://www.youtube.com/watch?v=WuDkGMMuqVQ'
+            },
+            // Serve para iniciar uma function quando um determinado elemento for acionado
+            watch: {
+                nome(novoValor) {
+                     console.log(novoValor.toUpperCase());
+                }
+            }
+        })
     </script>
 </body>
 </html>
